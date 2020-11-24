@@ -1,1 +1,1 @@
-Server part to make client-server application
+This repository is for the second lab
