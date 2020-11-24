@@ -7,7 +7,6 @@ from sqlalchemy.orm import *
 
 
 def save_original_image(image, file_name):
-    # try:
     if os.path.exists('Original') == 0:
         os.mkdir('Original')
         os.chmod(r'Original', 0o777)
@@ -31,9 +30,6 @@ def save_original_image(image, file_name):
     path = directory + file_name
     cv2.imwrite(path, image)
 
-
-# except Exception as e:
-# print("Oops!", e.__class__, "occurred.")
 
 
 def save_edited_image(base_image, output_image_name):
@@ -154,5 +150,3 @@ def test():
     im = Image.open('image.png')
     save_original_image(im, 'im.png')
     save_edited_image(im, 'im.png')
-
-# test()
