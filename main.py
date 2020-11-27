@@ -93,6 +93,16 @@ def getImage():
 		else:
 			imagePath = tempPath
 			im = imagePath
+			
+def showImage(pathF):
+	if pathF:
+		pixmap = QPixmap(pathF)
+		ui.label.setScaledContents(True)
+		ui.label.setPixmap(QPixmap(pixmap))
+
+def addToLog(text):
+	ui.textBrowser.append(text)
+	logFile.write(text + '\n')
 
 
 # Main loop
