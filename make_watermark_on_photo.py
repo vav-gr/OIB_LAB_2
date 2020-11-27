@@ -12,4 +12,5 @@ def watermark_photo(input_image_path, watermark_image_path, position):
         #base_image.show()
         add_to_edited_table('newimage.jpg')
         print('The watermark was successfully applied to the picture')
+        else:
 
