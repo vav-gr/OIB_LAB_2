@@ -104,6 +104,32 @@ def addToLog(text):
 	ui.textBrowser.append(text)
 	logFile.write(text + '\n')
 
-
+def start_button():
+	global im
+	if imagePath:
+		addToLog('# IMAGE \'' + imagePath + '\' HAS BEEN SENT FOR PROCESSING......')
+		im = get_watermark_image(imagePath)
+		if im == '1001':
+			addToLog('# ERROR: HTTP ERROR')
+		elif im == '1002':
+			addToLog('# ERROR: ERROR CONNECTING')
+		elif im == '1003':
+			addToLog('# ERROR: TIMEOUT ERROR')
+		elif im == '1004':
+			addToLog('# ERROR: INTERNAL SERVER ERROR')
+		else:
+			try:
+				save_image(im)
+			except IOError:
+				addToLog('# ERROR: NO SUCH FILE OR DIRECTORY')
+			except BaseException:
+				addToLog('# ERROR: INTERNAL SERVER ERROR')
+			else:
+				addToLog('# IMAGE \'' + imagePath + '\' PROCESSED SUCCESSFULLY')
+				im = 'Processed image.png'
+				showImage(im)
+	else:
+		addToLog('# ERROR: FILE NOT SELECTED')
+	
 # Main loop
 sys.exit(app.exec_())
