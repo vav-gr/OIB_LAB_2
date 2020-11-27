@@ -69,6 +69,31 @@ def openFullSize(imPath):
 				addToLog('# FILE  \''+ imPath + '\' WAS OPENED AT FULL SIZE')
 			except OSError:
 				addToLog('# ERROR: UNCNOWN ERROR')
+				
+def getImage():
+	global im
+	global imagePath
+	if not imagePath:
+		qfd = QFileDialog()
+		fName = QFileDialog.getOpenFileName(qfd, 'Open File', '', 'Images (*.png *.jpg *.bmp)')
+		imagePath = fName[0]
+		im = imagePath
+		if imagePath:
+			showImage(imagePath)
+			addToLog('# FILE WAS SELECTED: ' + imagePath)
+	else:
+		tempPath = imagePath
+		qfd = QFileDialog()
+		fName = QFileDialog.getOpenFileName(qfd, 'Open File', '', 'Images (*.png *.jpg *.bmp)')
+		imagePath = fName[0]
+		im = imagePath
+		if imagePath:
+			showImage(imagePath)
+			addToLog('# FILE WAS SELECTED: ' + imagePath)
+		else:
+			imagePath = tempPath
+			im = imagePath
+
 
 # Main loop
 sys.exit(app.exec_())
